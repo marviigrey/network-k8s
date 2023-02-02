@@ -1,0 +1,33 @@
+NETWORK POLICIES
+ingress- incoming traffic from endusers of a web-app
+Egress- outgoing requests from the web-server to enduser
+by default communication between all pods in a cluster is allowed.
+We link the pod to a network policy in the spec using podSelector and labels
+Then we specify the rules,in the rules,we specify the pod that should either 
+allow or deny traffic into or out of our selected pod.
+When we make a call or request,the result is shipped out automatically without
+any configuration.
+You should also specify namespace using namespaceSelector.
+we also use a selector to allow traffic from an external pod or server into our 
+usin the 
+ -ipBlock:
+   cidr: 192.34.45.32/34
+
+This will allow traffic from the specified ip address or server address.
+===========================================================================
+NSLOOK UP.
+we can either do this in two ways which are
+create a pod with a busybox:1.28 image 
+pass command into the container using exec command 
+the command would be "nslookup <pod-IP/svc-name>, Here is how to do it.
+k run pod nginx --image=nginx 
+k expose pod/nginx --name=web-pod-svc --port=80 --target-port=80 --type=ClusterIP
+k run test-nslookup --image=busybox:1.28 --command sleep 4800
+k exec test-nslookup -it -- nslookup web-pod-svc
+also we can use the pod IP. run:
+k get pod -o wide,copy the nginx ip and replace the dots(.) with hyphen(-) then run:
+k exec test-nslookup -it -- nslookup 192-3-4-54
+ 
+       OR
+we could run the whole command at once,including creating the busybox pod.
+k run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup web-pod-svc/ 192-3-4-54
