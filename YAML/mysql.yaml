@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  reationTimestamp: null
+  namespace: ns2
+  labels:
+    run: mysql
+  name: mysql
+spec:
+  containers:
+  - image: mysql
+    name: mysql
+    env:
+      - name: MYSQL_ROOT_PASSWORD
+        value: my-secret-pw
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
