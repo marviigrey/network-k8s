@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: np-block
+  name: np-block
+  namespace: ns2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: np-block
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: np-block
+    spec:
+      containers:
+      - image: kodekloud/simple-webapp
+        name: simple-webapp
+        resources: {}
+status: {}
