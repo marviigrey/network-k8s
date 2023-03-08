@@ -16,3 +16,5 @@ kubectl create ns ns1
 kubectl create ns ns2
 
 Then we create the deployments in the YAML dirctory of this repository.
+kubectl create  -f deployments.yaml
+kubectl create -f deploy.yaml
