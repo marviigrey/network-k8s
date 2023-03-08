@@ -1,1 +1,26 @@
 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: np-test
+  name: np-test
+  namespace: ns1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: np-test
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: np-test
+    spec:
+      containers:
+      - image: kodekloud/webapp-color
+        name: webapp-color
+        resources: {}
+status: {}
