@@ -11,3 +11,8 @@ note: You will need a VM running a k8s node.
 
 1. we will randomly create three different pods running on different namespaces,but first we create the
 two namespaces ns1 and ns2,the third ns is the default ns which is already created.
+
+kubectl create ns ns1
+kubectl create ns ns2
+
+Then we create the deployments in the YAML dirctory of this repository.
