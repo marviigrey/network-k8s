@@ -18,3 +18,11 @@ kubectl create ns ns2
 Then we create the deployments in the YAML dirctory of this repository.
 kubectl create  -f deployments.yaml
 kubectl create -f deploy.yaml
+
+===========================================================================================After setting up our pods running the apps we move to setting the our policies.
+As it stands,we have three pods running in three different namespaces:
+mysql running in ns3 namespace,
+np-test running in ns1,
+nb-block running in ns2.
+
+For some reason we would like our np
