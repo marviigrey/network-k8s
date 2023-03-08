@@ -19,10 +19,18 @@ Then we create the deployments in the YAML dirctory of this repository.
 kubectl create  -f deployments.yaml
 kubectl create -f deploy.yaml
 
-===========================================================================================After setting up our pods running the apps we move to setting the our policies.
+===========================================================================================
+After setting up our pods running the apps we move to setting the our policies.
 As it stands,we have three pods running in three different namespaces:
 mysql running in ns3 namespace,
 np-test running in ns1,
 nb-block running in ns2.
 
-For some reason we would like our np
+We need to expose each of our application by creating svc with the yaml object creation file.
+After exposing them and confirming that the services are created we then move further to the next step:
+We want the mysql pod to only allow traffic from nptest pod and not the np block. we also have an
+external database with the ip [.......] to be able to reach out to our database pod which is mysql.
+To carryout this task we then create a network policy called db-policy by using the yaml creation file called np.yaml.
+After doing this we can test them by executing the ping or curl command with the endpoints of the services:
+kubectl exec -it mysql -n ns3 -- curl <endpoint>.
+The only pod that is allowed or reach this pod without error should be the NP-TEST pod.
